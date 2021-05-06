@@ -1,17 +1,18 @@
-const { Sequelize, Datatypes } = require('sequelize');
-const sequelize = require('../sequelize');
+require('dotenv').config();
+const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = new Sequelize(process.env.DATABASE_URL);
 
 const Team = sequelize.define('Team', {
   uuid: {
-    type: Datatypes.UUID,
+    type: DataTypes.UUID,
     defaultValue: Sequelize.UUIDV4,
   },
   name: {
-    type: Datatypes.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   logo: {
-    type: Datatypes.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
 });
