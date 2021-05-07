@@ -1,0 +1,15 @@
+GET http://localhost:8000
+
+###
+
+GET http://localhost:8000/teams
+
+###
+
+POST http://localhost:8000/teams
+Content-Type: application/json
+
+{
+    "name": "pikaTeam",
+    "logo": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
+}

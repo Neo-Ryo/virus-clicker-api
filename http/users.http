@@ -3,6 +3,9 @@ GET http://localhost:8000
 ###
 GET http://localhost:8000/users
 
+###
+GET http://localhost:8000/users/7e2962ef-c987-44ee-8784-8a852dff038
+
 
 ###
 GET http://localhost:8000/users/destroy
@@ -12,6 +15,7 @@ POST http://localhost:8000/users
 Content-Type: application/json
 
 {
-    "pseudo": "Neo-Ryo",
-    "team": "test"
+    "pseudo": "Toto",
+    "team": "36b9a0ba-e220-43b7-980a-b9b839a6f9e0",
+    "TeamUuid": "36b9a0ba-e220-43b7-980a-b9b839a6f9e0"
 }

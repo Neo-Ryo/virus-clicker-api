@@ -6,10 +6,12 @@ const User = sequelize.define('User', {
   uuid: {
     type: DataTypes.UUID,
     defaultValue: Sequelize.UUIDV4,
+    primaryKey: true,
   },
   pseudo: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
   },
   team: {
     type: DataTypes.STRING,
