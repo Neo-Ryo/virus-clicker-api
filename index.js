@@ -10,7 +10,7 @@ const cors = require('@koa/cors');
 const sequelize = require('./sequelize');
 require('./associations');
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 app.use(
   bodyParser({
