@@ -6,19 +6,13 @@ const router = require('./routes');
 const User = require('./models/User.model');
 const Team = require('./models/Team.model');
 const cors = require('@koa/cors');
+const PORT = process.env.PORT || 8000;
 
 const sequelize = require('./sequelize');
 require('./associations');
-
-const PORT = process.env.PORT || 8000;
-app.use(cors());
-app.use(
-  bodyParser({
-    extendTypes: {
-      json: ['application/x-javascript'], // will parse application/x-javascript type body as a JSON string
-    },
-  })
-);
+const corsOptions = { origin: '*' };
+app.use(cors(corsOptions));
+app.use(bodyParser());
 //this is applying my CORS headers ===> priceless
 app.use(async (ctx, next) => {
   ctx.set('Access-Control-Allow-Origin', '*');
