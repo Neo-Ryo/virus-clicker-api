@@ -38,6 +38,7 @@ async function main() {
     // await User.sync({ force: true });
     // await Team.sync({ force: true });
     await sequelize.sync();
+    await sequelize.authenticate();
     console.log('reinitialized DB');
     await sequelize.authenticate();
     app.listen(PORT, () => {
