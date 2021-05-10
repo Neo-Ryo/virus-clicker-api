@@ -9,6 +9,9 @@ if (process.env.DATABASE_URL) {
     host: process.env.DATABASE_URL,
     native: true,
     logging: false,
+    dialectOptions: {
+      ssl: true,
+    },
   });
 } else {
   module.exports = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
