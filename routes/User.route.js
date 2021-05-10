@@ -6,7 +6,6 @@ const User = require('../models/User.model');
 
 userRouter.get('/', async (ctx, next) => {
   const users = await User.findAll();
-  ctx.headers = 'Access-Control-Allow-Origin';
   ctx.body = users;
 });
 
