@@ -1,16 +1,16 @@
 const Router = require('koa-router');
 const { increment } = require('../models/Team.model');
 const Team = require('../models/Team.model');
-const userRouter = new Router({ prefix: '/users' });
+const userRouter = new Router();
 const User = require('../models/User.model');
 
-userRouter.get('/', async (ctx, next) => {
+userRouter.get('/users', async (ctx, next) => {
   const users = await User.findAll();
   ctx.status = 200;
   ctx.body = users;
 });
 
-userRouter.get('/:uuid', async (ctx, next) => {
+userRouter.get('/users/:uuid', async (ctx, next) => {
   try {
     const { uuid } = ctx.params;
     const oneUser = await User.findByPk(uuid);
@@ -22,7 +22,7 @@ userRouter.get('/:uuid', async (ctx, next) => {
   // console.log(ctx.params);
 });
 
-userRouter.post('/', async (ctx, next) => {
+userRouter.post('/users', async (ctx, next) => {
   try {
     const { pseudo, team } = ctx.request.body;
     const postUser = await User.create({
@@ -38,7 +38,7 @@ userRouter.post('/', async (ctx, next) => {
   }
 });
 
-userRouter.put('/:uuid/click', async (ctx, next) => {
+userRouter.put('/users/:uuid/click', async (ctx, next) => {
   try {
     const { uuid } = ctx.params;
     console.log(uuid);
@@ -54,7 +54,7 @@ userRouter.put('/:uuid/click', async (ctx, next) => {
 });
 
 //eraser to remove on final stage
-userRouter.delete('/destroy', async (ctx, next) => {
+userRouter.delete('/users/destroy', async (ctx, next) => {
   const deleteAllUsers = await User.destroy({ where: {} });
   ctx.status = 200;
   ctx.body = 'all deleted';
