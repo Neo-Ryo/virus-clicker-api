@@ -1,9 +1,12 @@
 const Router = require('koa-router');
+const { increment } = require('../models/Team.model');
+const Team = require('../models/Team.model');
 const userRouter = new Router({ prefix: '/users' });
 const User = require('../models/User.model');
 
 userRouter.get('/', async (ctx, next) => {
   const users = await User.findAll();
+  ctx.headers = 'Access-Control-Allow-Origin';
   ctx.body = users;
 });
 
@@ -24,21 +27,34 @@ userRouter.post('/', async (ctx, next) => {
     const { pseudo, team } = ctx.request.body;
     const postUser = await User.create({
       pseudo,
-      team,
+      TeamUuid: team,
     });
+
     ctx.status = 201;
     ctx.body = postUser;
   } catch (error) {
     ctx.status = 400;
-    ctx.body = 'User incorrect or already exist';
+    ctx.body = error;
+  }
+});
+
+userRouter.put('/:uuid/click', async (ctx, next) => {
+  try {
+    const { uuid } = ctx.params;
+    console.log(uuid);
+    const increment = await User.findByPk(uuid);
+    await increment.increment('score');
+    ctx.body = increment;
+  } catch (error) {
+    ctx.status = 400;
+    console.log(error);
+    // ctx.body = error
   }
 });
 
 //eraser to remove on final stage
-userRouter.get('/users/destroy', async (ctx, next) => {
-  const deleteAllUsers = await User.destroy({
-    where: {},
-  });
+userRouter.delete('/destroy', async (ctx, next) => {
+  const deleteAllUsers = await User.destroy({ where: {} });
   ctx.status = 200;
   ctx.body = 'all deleted';
 });

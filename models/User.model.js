@@ -13,8 +13,9 @@ const User = sequelize.define('User', {
     allowNull: false,
     unique: true,
   },
-  team: {
-    type: DataTypes.STRING,
+  score: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
     allowNull: false,
   },
 });

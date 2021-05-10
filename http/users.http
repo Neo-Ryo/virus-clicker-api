@@ -4,11 +4,14 @@ GET http://localhost:8000
 GET http://localhost:8000/users
 
 ###
-GET http://localhost:8000/users/7e2962ef-c987-44ee-8784-8a852dff038
-
+GET http://localhost:8000/users/c7786bcd-6288-47b9-8663-2aa7d2d8ce52
 
 ###
-GET http://localhost:8000/users/destroy
+
+PUT http://localhost:8000/users/c7786bcd-6288-47b9-8663-2aa7d2d8ce52/click
+
+###
+DELETE http://localhost:8000/users/destroy
 
 ###
 POST http://localhost:8000/users
@@ -16,6 +19,5 @@ Content-Type: application/json
 
 {
     "pseudo": "Toto",
-    "team": "36b9a0ba-e220-43b7-980a-b9b839a6f9e0",
-    "TeamUuid": "36b9a0ba-e220-43b7-980a-b9b839a6f9e0"
+    "team": "52c2351d-1b66-45cd-8503-536dd0f81a04"
 }
