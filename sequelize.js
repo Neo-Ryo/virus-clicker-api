@@ -5,6 +5,7 @@ const { DB_NAME, DB_USER, DB_PASSWORD } = process.env;
 if (process.env.DATABASE_URL) {
   module.exports = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
+    native: true,
     ssl: true,
     protocol: 'postgres',
     logging: false,

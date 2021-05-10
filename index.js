@@ -15,7 +15,7 @@ const corsOptions = { origin: '*' };
 app.use(bodyParser());
 //this is applying my CORS headers ===> priceless
 app.use(async (ctx, next) => {
-  ctx.set('Access-Control-Allow-Origin', 'https://virus-clicker.herokuapp.com');
+  ctx.set('Access-Control-Allow-Origin', '*');
   // ctx.set(
   //   'Access-Control-Allow-Headers',
   //   'Origin, X-Requested-With, Content-Type, Accept'
