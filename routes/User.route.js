@@ -6,6 +6,7 @@ const User = require('../models/User.model');
 
 userRouter.get('/', async (ctx, next) => {
   const users = await User.findAll();
+  ctx.status = 200;
   ctx.body = users;
 });
 
@@ -43,6 +44,7 @@ userRouter.put('/:uuid/click', async (ctx, next) => {
     console.log(uuid);
     const increment = await User.findByPk(uuid);
     await increment.increment('score');
+    ctx.status = 204;
     ctx.body = increment;
   } catch (error) {
     ctx.status = 400;
