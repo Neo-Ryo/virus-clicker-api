@@ -11,7 +11,12 @@ if (process.env.NODE_ENV === 'production') {
     password: process.env.PASSWORD,
     username: process.env.USER,
     database: process.env.DATABASE,
-    ssl: true,
+    dialectOptions: {
+      ssl: {
+        require: true, // This will help you. But you will see nwe error
+        rejectUnauthorized: false, // This line will fix new error
+      },
+    },
   });
 } else {
   module.exports = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
