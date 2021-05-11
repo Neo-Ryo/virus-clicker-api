@@ -10,8 +10,8 @@ const PORT = process.env.PORT || 8000;
 
 const sequelize = require('./sequelize');
 require('./associations');
-// const corsOptions = { origin: '*' };
-// app.use(cors(corsOptions));
+const corsOptions = { origin: '*' };
+app.use(cors(corsOptions));
 app.use(bodyParser());
 //this is applying my CORS headers ===> priceless
 app.use(async (ctx, next) => {
@@ -34,9 +34,11 @@ async function main() {
     await sequelize.authenticate();
     app.listen(PORT, () => {
       console.log('connection has been succesfull');
+      console.log('ENVIRONEMENT ==> ', process.env.NODE_ENV);
     });
   } catch (error) {
     console.log('Unable to reach DB', error);
+    console.log('ENVIRONEMENT ==> ', process.env.NODE_ENV);
   }
 }
 
