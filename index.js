@@ -32,7 +32,6 @@ async function main() {
     // await Team.sync({ force: true });
     await sequelize.sync();
     await sequelize.authenticate();
-    await sequelize.authenticate();
     app.listen(PORT, () => {
       console.log('connection has been succesfull');
     });
