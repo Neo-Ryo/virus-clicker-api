@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'production') {
   module.exports = new Sequelize({
     dialect: 'postgres',
     host: process.env.HOST,
-    port: process.env.PORT,
+    // port: process.env.PORT,
     password: process.env.PASSWORD,
     username: process.env.USER,
     database: process.env.DATABASE,
