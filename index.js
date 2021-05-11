@@ -28,11 +28,10 @@ app.use(router());
 async function main() {
   try {
     //drop tables
-    await User.sync({ force: true });
-    await Team.sync({ force: true });
+    // await User.sync({ force: true });
+    // await Team.sync({ force: true });
     await sequelize.sync();
     await sequelize.authenticate();
-    console.log('reinitialized DB');
     await sequelize.authenticate();
     app.listen(PORT, () => {
       console.log('connection has been succesfull');
