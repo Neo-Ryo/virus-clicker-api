@@ -7,10 +7,10 @@ if (process.env.NODE_ENV === 'production') {
   module.exports = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
     host: process.env.HOST,
+    database: process.env.DATABASE,
+    username: process.env.USER,
     port: process.env.PORT,
     password: process.env.PASSWORD,
-    username: process.env.USER,
-    database: process.env.DATABASE,
     dialectOptions: {
       ssl: {
         require: true, // This will help you. But you will see nwe error

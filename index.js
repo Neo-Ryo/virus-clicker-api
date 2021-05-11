@@ -3,8 +3,8 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const app = new Koa();
 const router = require('./routes');
-const User = require('./models/User.model');
-const Team = require('./models/Team.model');
+// const User = require('./models/User.model');
+// const Team = require('./models/Team.model');
 const cors = require('@koa/cors');
 const PORT = process.env.PORT || 8000;
 
