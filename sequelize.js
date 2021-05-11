@@ -4,7 +4,7 @@ const { Sequelize } = require('sequelize');
 const { DB_NAME, DB_USER, DB_PASSWORD } = process.env;
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = new Sequelize({
+  module.exports = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
     host: process.env.HOST,
     port: process.env.PORT,
