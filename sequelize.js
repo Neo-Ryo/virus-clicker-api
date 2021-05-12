@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const { Sequelize } = require('sequelize');
-const { DB_NAME, DB_USER, DB_PASSWORD } = process.env;
+const { DB_NAME, DB_USER, DB_PASSWORD, DATABASE_URL } = process.env;
 
 if (process.env.NODE_ENV === 'production') {
   module.exports = new Sequelize(process.env.DATABASE_URL, {
@@ -19,9 +19,12 @@ if (process.env.NODE_ENV === 'production') {
     },
   });
 } else {
-  module.exports = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+  module.exports = new Sequelize(DATABASE_URL, {
     dialect: 'postgres',
     host: 'localhost',
+    username: DB_USER,
+    port: 5432,
+    password: DB_PASSWORD,
     logging: false,
   });
 }
