@@ -11,10 +11,17 @@ teamRouter.get('/teams', async (ctx, next) => {
 });
 
 teamRouter.post('/teams', async (ctx, next) => {
-  const { name, logo } = ctx.request.body;
-  const postATeam = await Team.create({ name, logo }, { include: User });
-  ctx.status = 201;
-  ctx.body = postATeam;
+  try {
+    const { name, logo } = ctx.request.body;
+    const postATeam = await Team.create({ name, logo }, { include: User });
+    if (postATeam) {
+      ctx.status = 201;
+      ctx.body = postATeam;
+    }
+  } catch (error) {
+    ctx.status = 400;
+    ctx.body = error.message;
+  }
 });
 
 module.exports = teamRouter;

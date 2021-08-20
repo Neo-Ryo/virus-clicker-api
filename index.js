@@ -58,7 +58,7 @@ router.post('/users', async (ctx, next) => {
     ctx.body = postUser;
   } catch (error) {
     ctx.status = 400;
-    ctx.body = error;
+    ctx.body = error.message;
   }
 });
 
@@ -91,17 +91,26 @@ router.get('/teams', async (ctx, next) => {
 });
 
 router.post('/teams', async (ctx, next) => {
-  const { name, logo } = ctx.request.body;
-  const postATeam = await Team.create({ name, logo }, { include: User });
-  ctx.status = 201;
-  ctx.body = postATeam;
+  try {
+    const { name, logo } = ctx.request.body;
+    const postATeam = await Team.create({ name, logo }, { include: User });
+    if (postATeam) {
+      ctx.status = 201;
+      ctx.body = postATeam;
+    } else {
+      throw new Error();
+    }
+  } catch (error) {
+    ctx.status = 400;
+    ctx.body = error.message;
+  }
 });
 app.use(cors(corsOptions));
 app.use(bodyParser());
 //this is applying my CORS headers ===> priceless
 app.use(router.routes()).use(router.allowedMethods());
 
-async function main() {
+(async function main() {
   try {
     //drop tables
     // await User.sync({ force: true });
@@ -116,6 +125,6 @@ async function main() {
     console.log('Unable to reach DB', error);
     console.log('ENVIRONEMENT ==> ', process.env.NODE_ENV);
   }
-}
+})();
 
-main();
+// main();
